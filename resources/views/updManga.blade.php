@@ -30,29 +30,32 @@
             <div class="card bg-glass">
                 <div class="card-body px-4 py-5 px-md-5">
 
-                    <form action="{{ route('manga.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                <form action="{{ route('manga.update', $manga->id) }}" method="POST" enctype="multipart/form-data">
+                  @csrf 
+                  @method("PUT")
+                  <div class="input-group mb-3 col-5">
+                      <span class="input-group-text col-3" id="basic-addon3">Manga</span>
+                      <input type="text" name="nombre_manga" class="form-control col-2" value="{{ $manga->nombre_manga }}">
+                  </div>
+                  <div class="input-group mb-3 col-5">
+                      <span class="input-group-text col-3" id="basic-addon3">Tomo</span>
+                      <input type="text" name="tomo" class="form-control col-2" value="{{ $manga->tomo }}">
+                  </div>
+                  <div class="input-group mb-3 col-5">
+                      <span class="input-group-text col-3" id="basic-addon3">Precio</span>
+                      <input type="number" name="precio" class="form-control col-2" value="{{ $manga->precio }}">
+                  </div>
+                  <div class="input-group mb-3 col-5">
+                      <span class="input-group-text col-3" id="basic-addon3">Portada</span>
+                      <input type="file" name="image" class="form-control col-2" accept="image/*" onchange="previewImage(event)">
+                  </div>
+                  
+                  <img id="imagePreview" class="preview-img" src="{{ asset('storage/manga/' . $manga->image) }}" alt="imagen" style="display:block; max-width: 200px;"/>
+                  <br>
+                  <button class="btn btn-info">Guardar</button>
+                  <a href="{{ route('manga.index')}}" class="btn btn-warning"><span class="fas fa-undo-alt"></span>Regresar</a>
 
-                        <div class="input-group mb-3 col-5">
-                            <span class="input-group-text col-3" id="basic-addon3">Manga</span>
-                            <input type="text" name="nombre_manga" class="form-control col-2" required>
-                        </div>
-                        <div class="input-group mb-3 col-5">
-                            <span class="input-group-text col-3" id="basic-addon3">Tomo</span>
-                            <input type="text" name="tomo" class="form-control col-2" required>
-                        </div>
-                        <div class="input-group mb-3 col-5">
-                            <span class="input-group-text col-3" id="basic-addon3">Precio</span>
-                            <input type="number" name="precio" class="form-control col-2" required>
-                        </div>
-                        <div class="input-group mb-3 col-5">
-                            <span class="input-group-text col-3" id="basic-addon3">Portada</span>
-                            <input type="file" name="image" class="form-control col-2" accept="image/*" onchange="previewImage(event)">
-                        </div>
-                        <img id="imagePreview" class="preview-img" src="#" alt="Vista previa de la imagen" style="display:none;"/>
-
-                        <button class="btn btn-info">Guardar</button>
-                    </form>
+              </form>
 
                 </div>
             </div>

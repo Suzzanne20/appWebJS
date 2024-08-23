@@ -68,7 +68,11 @@
                         <tbody>
                             @foreach($datos as $item)
                             <tr>
-                                <td>{{$item->nombre_manga}}</td>
+                                <td>
+                                <a href="{{ route('manga.edit', $item->id) }}" class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover">
+                                    {{ $item->nombre_manga }}
+                                </a>
+                                </td>
                                 <td>{{$item->tomo}}</td>
                                 <td>{{$item->precio}}</td>
                             </tr>

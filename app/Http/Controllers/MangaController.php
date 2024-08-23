@@ -76,20 +76,50 @@ class MangaController extends Controller
     }
 
 /************************************************************************************************/ 
-    public function edit(manga $manga)
+    public function edit($id)
     {
-        $modalManga = manga::orderBy('created_at', 'desc')->take(1)->get();
+        $manga = Manga::find($id);   
+    return view('updManga', compact('manga'));
+    }
+/************************************************************************************************/ 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre_manga' => 'required|string|max:255',
+            'tomo' => 'required|integer',
+            'precio' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        
+        $manga = Manga::find($id); 
+        $manga->nombre_manga = $request->nombre_manga;
+        $manga->tomo = $request->tomo;
+        $manga->precio = $request->precio;
+    
+        // la imageeeen
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('manga', 'public');
+            $manga->image = basename($imagePath);
+        }
+    
+        $manga->save();
+    
+        return redirect()->route('manga.show')->with('success', 'Manga actualizado con éxito');
 
-    return view('updManga', compact('modalManga'));
     }
 /************************************************************************************************/ 
-    public function update(Request $request, manga $manga)
-    {
-        //
+    public function destroy($id)
+    {   
+        $manga = Manga::find($id); 
+        $manga->delete();
+
+        return redirect()->route('manga.show')->with('success', 'Manga eliminado con éxito');
     }
 /************************************************************************************************/ 
-    public function destroy(manga $manga)
-    {
-        return view('eliManga');
-    }
-}
+public function eli(Request $request, $id)
+{
+    $manga = Manga::find($id);   
+    return view('eliManga', compact('manga'));
+
+
+}}
