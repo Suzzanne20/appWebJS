@@ -111,7 +111,7 @@ class MangaController extends Controller
     public function destroy($id)
     {   
         $manga = Manga::find($id); 
-        $manga->delete();
+        $manga->delete(); 
 
         return redirect()->route('manga.show')->with('success', 'Manga eliminado con éxito');
     }
