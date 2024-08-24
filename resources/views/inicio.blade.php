@@ -16,7 +16,7 @@
             </div>
             <div class="col-6">
                 <h1>Un universo</h1>
-                <h3>de historias al alcance de tus manos</h3>
+                <h3>HOLAAAAAAA</h3>
             </div>        </div>
             <div class="row">
                 <div class="progress" role="progressbar" aria-label="Info striped example">
