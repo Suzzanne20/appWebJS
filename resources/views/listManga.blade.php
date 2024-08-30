@@ -7,7 +7,7 @@
             max-height: 550px; /* Ajusta la altura según sea necesario */
             overflow-y: scroll;
         }
-</style>
+</style>  
  
     <div class="container mt-5">
         <div class="row">
